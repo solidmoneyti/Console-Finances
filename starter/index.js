@@ -86,3 +86,55 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+  function analyzeRecords(finances) {
+    var totalMonths = finances.length;
+    var netTotal = 0;
+    var totalChange = 0;
+    var greatestIncrease = { date: "", amount: 0 };
+    var greatestDecrease = { date: "", amount: 0 };
+    var currentCumulative = 0; // Track cumulative changes
+  
+    console.log("Financial Analysis");
+    console.log("----------------------");
+  
+    for (var i = 0; i < finances.length; i++) {
+      var currentDate = finances[i][0];
+      var currentAmount = finances[i][1];
+  
+      // Calculate net total
+      netTotal += currentAmount;
+  
+      // Calculate total change (except for the first month)
+      if (i > 0) {
+        var previousAmount = finances[i - 1][1];
+        var change = currentAmount - previousAmount;
+        totalChange += change;
+  
+        // Check for greatest increase
+        if (change > greatestIncrease.amount) {
+          greatestIncrease.date = currentDate;
+          greatestIncrease.amount = change;
+        }
+  
+        // Check for greatest decrease
+        if (change < greatestDecrease.amount) {
+          greatestDecrease.date = currentDate;
+          greatestDecrease.amount = change;
+        }
+      }
+    }
+  
+    // Calculate average change
+    var averageChange = totalChange / (totalMonths - 1);
+  
+    // Display results
+    console.log("Total Months:", totalMonths);
+    console.log("Total: $" + netTotal);
+    console.log("Average Change: $" + averageChange.toFixed(2));
+    console.log("Greatest Increase in Profits/Losses:", greatestIncrease.date, "($" + greatestIncrease.amount + ")");
+    console.log("Greatest Decrease in Profits/Losses:", greatestDecrease.date, "($" + greatestDecrease.amount + ")");
+  }
+  
+  // Call the function with the sample dataset
+  analyzeRecords(finances);
