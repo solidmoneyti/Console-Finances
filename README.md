@@ -1,7 +1,7 @@
 # Finance Analysis On Console
 
 ## Description
-This Study Guide was created for bootcamp students who were going through the Prework. It contains notes on HTML, CSS, git, and Javascript.
+This is a financial analysis code that helps deliver the parameters required from the analyst.
 
 ## Installation
 N/A
